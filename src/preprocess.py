@@ -1,25 +1,19 @@
-import os
-import numpy as np
 import h5py
 from torch.utils.data import Dataset
-from PIL import Image
 
 
 class TrainLabel(Dataset):
-    def __init__(self, mat_path, image_dir):
+    def __init__(self, mat_path):
         self.file = h5py.File(mat_path, 'r')
         self.names = self.file['digitStruct']['name']
         self.bboxes = self.file['digitStruct']['bbox']
 
-        self.image_dir = image_dir
-
     def __getitem__(self, index):
-        image_name = self.__getName(index)
-        image = self.__getImage(index)
+        image_name = self.getName(index)
         bboxes = self.__getBbox(index)
-        return image_name, bboxes, image
+        return image_name, bboxes
 
-    def __getName(self, index):
+    def getName(self, index):
         name = ''.join([chr(v[0])
                        for v in self.file[(self.names[index][0])]])
         return name
@@ -40,8 +34,3 @@ class TrainLabel(Dataset):
         bbox['top'] = self.__bboxHelper(self.file[bb]['top'])
         bbox['width'] = self.__bboxHelper(self.file[bb]['width'])
         return bbox
-
-    def __getImage(self, index):
-        image_name = self.__getName(index)
-        image = Image.open(os.path.join(self.image_dir, image_name))
-        return image
