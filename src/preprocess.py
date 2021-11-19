@@ -26,11 +26,11 @@ class TrainLabel(Dataset):
         return attr
 
     def __getBbox(self, index):
-        bbox = {}
+        bboxes = {}
         bb = self.bboxes[index].item()
-        bbox['height'] = self.__bboxHelper(self.file[bb]['height'])
-        bbox['label'] = self.__bboxHelper(self.file[bb]['label'])
-        bbox['left'] = self.__bboxHelper(self.file[bb]['left'])
-        bbox['top'] = self.__bboxHelper(self.file[bb]['top'])
-        bbox['width'] = self.__bboxHelper(self.file[bb]['width'])
-        return bbox
+        bboxes['height'] = self.__bboxHelper(self.file[bb]['height'])
+        bboxes['label'] = self.__bboxHelper(self.file[bb]['label'])
+        bboxes['left'] = self.__bboxHelper(self.file[bb]['left'])
+        bboxes['top'] = self.__bboxHelper(self.file[bb]['top'])
+        bboxes['width'] = self.__bboxHelper(self.file[bb]['width'])
+        return bboxes
