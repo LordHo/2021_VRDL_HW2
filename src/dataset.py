@@ -2,6 +2,7 @@ import os
 import glob
 import torch
 import numpy as np
+import glob
 from PIL import Image
 from torch.utils.data.dataset import Dataset
 from torchvision import transforms
@@ -58,19 +59,24 @@ class TrainDataset(TrainLabel):
 class EvalDataset(Dataset):
     def __init__(self, image_dir):
         self.image_dir = image_dir
+        self.image_names = sorted(
+            glob.glob(os.path.join(self.image_dir, '*.png')), key=lambda x: int(os.path.basename(x).split('.')[0]))
 
         self.ToTensor = transforms.Compose([
             transforms.ToTensor()
         ])
 
     def __len__(self):
-        return len(glob.glob(os.path.join(self.image_dir, '*.png')))
+        return len(sorted(glob.glob(os.path.join(self.image_dir, '*.png'))))
 
     def __getitem__(self, index):
         image = self.__getImage(index)
-        return self.ToTensor(image)
+        return self.ToTensor(image), self.__getName(index)
+
+    def __getName(self, index):
+        return os.path.basename(self.image_names[index])
 
     def __getImage(self, index):
-        image_name = super().getName(index)
+        image_name = self.__getName(index)
         image = Image.open(os.path.join(self.image_dir, image_name))
         return image
