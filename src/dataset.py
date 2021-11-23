@@ -1,5 +1,6 @@
 import os
 import glob
+from typing import overload
 import torch
 import numpy as np
 import glob
@@ -35,7 +36,8 @@ class TrainDataset(TrainLabel):
 
     def __get_box(self, bboxes, index):
         x, y = bboxes['left'][index], bboxes['top'][index]
-        height, width = bboxes['height'][index], bboxes['width'][index]
+        # height, width = bboxes['height'][index], bboxes['width'][index]
+        width, height = bboxes['width'][index], bboxes['height'][index]
         return [x, y, x+width, y+height]
 
     def __get_target(self, index):
@@ -56,7 +58,7 @@ class TrainDataset(TrainLabel):
         return target
 
 
-class EvalDataset(Dataset):
+class EvalDataset(TrainDataset):
     def __init__(self, image_dir):
         self.image_dir = image_dir
         self.image_names = sorted(
@@ -80,3 +82,38 @@ class EvalDataset(Dataset):
         image_name = self.__getName(index)
         image = Image.open(os.path.join(self.image_dir, image_name))
         return image
+
+
+class YoloTrainConvert(TrainLabel):
+    def __init__(self, mat_path):
+        super().__init__(mat_path)
+
+    def __len__(self):
+        return super().__len__()
+
+    def __getitem__(self, index):
+        target = self.__get_target(index)
+        image_name = self.getName(index)
+        return target, image_name
+
+    def __get_box(self, bboxes, index):
+        x, y = bboxes['left'][index], bboxes['top'][index]
+        width, height = bboxes['width'][index], bboxes['height'][index]
+        return [x, y, x+width, y+height]
+
+    def __get_target(self, index):
+        target = {}
+        image_name, bboxes = super().__getitem__(index)
+        labe_num = len(bboxes['label'])
+
+        boxes = []
+        labels = []
+        for index in range(labe_num):
+            target = {}
+            boxes.append(self.__get_box(bboxes, index))
+            labels.append(bboxes['label'][index])
+
+        target["boxes"] = np.array(boxes).astype(float)
+        target["labels"] = np.array(labels).astype(int)
+
+        return target

@@ -7,3 +7,6 @@
 *.pkl
 *.txt
 *.json
+yolov5
+src/convert_to_yolov5_format.ipynb
+src/train_yolov5.ipynb

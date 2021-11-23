@@ -8,6 +8,9 @@ class TrainLabel(Dataset):
         self.names = self.file['digitStruct']['name']
         self.bboxes = self.file['digitStruct']['bbox']
 
+    def __len__(self):
+        return len(self.names)
+
     def __getitem__(self, index):
         image_name = self.getName(index)
         bboxes = self.__getBbox(index)
