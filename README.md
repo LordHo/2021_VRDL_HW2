@@ -72,6 +72,9 @@ python detect.py --weights runs/train/exp47/weights/best.pt --conf 0.2 --source 
 
 Yolov5: https://drive.google.com/file/d/1mxwvPyvY1WNXfovtYSQeyrGeLKgdLF34/view?usp=sharing  
 
+## Benchmark Result
+You can see the all testing image results and time costs on `inference.ipynb`.
+
 ## Reference
 
 [1] Yolov5: https://github.com/ultralytics/yolov5  
