@@ -25,6 +25,11 @@ conda install pytorch==1.8.0 torchvision==0.9.0 torchaudio==0.8.0 cudatoolkit=11
 
 Other version Link: https://pytorch.org/get-started/previous-versions/
 
+## Dataset
+
+The Street View House Numbers: http://ufldl.stanford.edu/housenumbers/  
+Class Competition: https://competitions.codalab.org/competitions/35888?secret_key=7e3231e6-358b-4f06-a528-0e3c8f9e328e
+
 ## Requirements
 
 To install requirements:
