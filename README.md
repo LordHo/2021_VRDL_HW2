@@ -4,11 +4,14 @@
 
 2021_VRDL_HW2: https://github.com/LordHo/2021_VRDL_HW2.git
 
+## Hardware
+
+Intel(R) Core(TM) i7-9700F CPU @ 3.00GHz  
+NVIDIA GeForce RTX 2080 Ti
+
 ## Environment
 
 Window 10  
-NVIDIA GeForce RTX 2080
-
 Pytorch 1.8.0  
 Torchvision 0.9.0  
 CUDA 11.1
