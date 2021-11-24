@@ -40,12 +40,7 @@ pip install -r requirements.txt
 
 ## Introduction
 
-I use yolov5 [1] as my final result model. Besides, I also try RetinaNet [2] and Faster R-CNN [3], and the performance of three models are in following table.
-|       Model        | baseline | yolov5 | RetinaNet | Faster R-CNN |
-| :----------------: | :------: | :----: | :-------: | :----------: |
-|        Test        |  0.3919  | 0.4034 |  0.2533   |    0.3333    |
-|  Inference (sec)   |  0.2989  | 0.0365 |     -     |      -       |
-| Training time (hr) |    -     |   1    |    10     |      10      |
+I use yolov5 [1] as my final result model. Besides, I also try RetinaNet [2] and Faster R-CNN [3] in torchvision model zoo. Yolov5 can easy to get started by the command provided by yolov5 office github. However, if you want to complete whole flow from data preprocessing, dataset and data loader construct, training model until final step- predicting testing data, the torchvision is great choice for you.
 
 ## Training
 
@@ -65,6 +60,14 @@ To test model with testing data:
 python detect.py --weights runs/train/exp47/weights/best.pt --conf 0.2 --source data/test --save-txt --save-conf
 ```
 
+## Model Performance
+
+|       Model        | baseline | yolov5 | RetinaNet | Faster R-CNN |
+| :----------------: | :------: | :----: | :-------: | :----------: |
+|     Test (mAP)     |  0.3919  | 0.4034 |  0.2533   |    0.3333    |
+|  Inference (sec)   |  0.2989  | 0.0365 |     -     |      -       |
+| Training time (hr) |    -     |   1    |    10     |      10      |
+
 ## Best Model Weight
 
 Yolov5: https://drive.google.com/file/d/1mxwvPyvY1WNXfovtYSQeyrGeLKgdLF34/view?usp=sharing  
@@ -74,3 +77,4 @@ Yolov5: https://drive.google.com/file/d/1mxwvPyvY1WNXfovtYSQeyrGeLKgdLF34/view?u
 [1] Yolov5: https://github.com/ultralytics/yolov5  
 [2] RetinaNet: https://arxiv.org/abs/1708.02002  
 [3] Faster R-CNN: https://arxiv.org/abs/1506.01497
+[4] Yolov4: https://arxiv.org/abs/2004.10934
