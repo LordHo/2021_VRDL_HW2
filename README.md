@@ -41,10 +41,11 @@ pip install -r requirements.txt
 ## Introduction
 
 I use yolov5 [1] as my final result model. Besides, I also try RetinaNet [2] and Faster R-CNN [3], and the performance of three models are in following table.
-|      Model      | baseline | yolov5 | RetinaNet | Faster R-CNN |
-| :-------------: | -------- | :----: | :-------: | :----------: |
-|      Test       | 0.3919   | 0.4034 |  0.2533   |    0.3333    |
-| Inference (sec) | 0.2989   | 0.0365 |     -     |      -       |
+|       Model        | baseline | yolov5 | RetinaNet | Faster R-CNN |
+| :----------------: | :------: | :----: | :-------: | :----------: |
+|        Test        |  0.3919  | 0.4034 |  0.2533   |    0.3333    |
+|  Inference (sec)   |  0.2989  | 0.0365 |     -     |      -       |
+| Training time (hr) |    -     |   1    |    10     |      10      |
 
 ## Training
 
