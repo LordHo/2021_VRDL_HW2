@@ -1,0 +1,1 @@
+python detect.py --weights runs/train/exp47/weights/best.pt --conf 0.2 --source data/test --save-txt --save-conf

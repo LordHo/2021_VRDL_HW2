@@ -1,0 +1,1 @@
+python train.py --img 512 --batch 16 --epochs 60 --data data\yolov5\data.yaml --weights runs\train\exp47\weights\best.pt --workers 4
